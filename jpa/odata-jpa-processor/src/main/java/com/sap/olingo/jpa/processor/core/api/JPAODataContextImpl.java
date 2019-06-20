@@ -19,9 +19,11 @@ import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseProcessorFactory;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 
+
+
 final class JPAODataContextImpl implements JPAODataCRUDContext, JPAODataSessionContextAccess {
   /**
-   * 
+   *
    */
   private final JPAODataGetHandler jpaoDataGetHandler;
   private List<EdmxReference> references = new ArrayList<>();
@@ -73,8 +75,12 @@ final class JPAODataContextImpl implements JPAODataCRUDContext, JPAODataSessionC
   public JPAEdmProvider getEdmProvider() throws ODataException {
     if (jpaEdm == null)
       jpaEdm = new JPAEdmProvider(this.jpaoDataGetHandler.namespace, this.jpaoDataGetHandler.jpaMetamodel,
-          postProcessor, packageName);
+              postProcessor, packageName);
     return jpaEdm;
+  }
+
+  public void setEdmProvider(JPAEdmProvider edmProvider) {
+    jpaEdm = edmProvider;
   }
 
   public ErrorProcessor getErrorProcessor() {
@@ -144,7 +150,7 @@ final class JPAODataContextImpl implements JPAODataCRUDContext, JPAODataSessionC
   public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException {
     if (this.jpaoDataGetHandler.jpaMetamodel != null)
       jpaEdm = new JPAEdmProvider(this.jpaoDataGetHandler.namespace, this.jpaoDataGetHandler.jpaMetamodel,
-          postProcessor, packageName);
+              postProcessor, packageName);
     else
       this.postProcessor = postProcessor;
   }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa.iml" filepath="$PROJECT_DIR$/odata-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa-annotation/odata-jpa-annotation.iml" filepath="$PROJECT_DIR$/odata-jpa-annotation/odata-jpa-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa-coverage/odata-jpa-coverage.iml" filepath="$PROJECT_DIR$/odata-jpa-coverage/odata-jpa-coverage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa-metadata/odata-jpa-metadata.iml" filepath="$PROJECT_DIR$/odata-jpa-metadata/odata-jpa-metadata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa-processor/odata-jpa-processor.iml" filepath="$PROJECT_DIR$/odata-jpa-processor/odata-jpa-processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/odata-jpa-test/odata-jpa-test.iml" filepath="$PROJECT_DIR$/odata-jpa-test/odata-jpa-test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="odata-jpa-annotation" />
+        <module name="odata-jpa-processor" />
+        <module name="odata-jpa-test" />
+        <module name="odata-jpa-metadata" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="odata-jpa" target="1.5" />
+      <module name="odata-jpa-annotation" target="1.8" />
+      <module name="odata-jpa-coverage" target="1.5" />
+      <module name="odata-jpa-metadata" target="1.8" />
+      <module name="odata-jpa-processor" target="1.8" />
+      <module name="odata-jpa-test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="odata-jpa-annotation" options="-Xlint:unchecked" />
+      <module name="odata-jpa-metadata" options="-Xlint:unchecked" />
+      <module name="odata-jpa-processor" options="-Xlint:unchecked" />
+      <module name="odata-jpa-test" options="-Xlint:unchecked" />
+    </option>
+  </component>
+</project>

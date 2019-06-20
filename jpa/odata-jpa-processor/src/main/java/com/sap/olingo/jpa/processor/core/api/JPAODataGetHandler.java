@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataHttpHandler;
@@ -18,6 +19,7 @@ import org.apache.olingo.server.api.debug.DebugSupport;
 import org.apache.olingo.server.api.debug.RuntimeMeasurement;
 
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
+
 
 public class JPAODataGetHandler {
   final String namespace;
@@ -46,6 +48,17 @@ public class JPAODataGetHandler {
 
   }
 
+  public JPAODataGetHandler(final String pUnit, final DataSource ds, final EntityManagerFactory emf, JPAEdmProvider edmProvider) throws ODataException {
+    super();
+    this.namespace = pUnit;
+    this.ds = ds;
+    this.emf = emf;
+    this.jpaMetamodel = emf.getMetamodel();
+    this.context = new JPAODataContextImpl(this);
+    this.context.setEdmProvider(edmProvider);
+    this.odata = OData.newInstance();
+  }
+
   public JPAODataGetContext getJPAODataContext() {
     return context;
   }
@@ -61,11 +74,11 @@ public class JPAODataGetHandler {
 
   @SuppressWarnings("unchecked")
   public void process(final HttpServletRequest request, final HttpServletResponse response,
-      final JPAODataClaimsProvider claims, final EntityManager em) throws ODataException {
+                      final JPAODataClaimsProvider claims, final EntityManager em) throws ODataException {
 
     this.jpaMetamodel = em.getMetamodel();
     final ODataHttpHandler handler = odata.createHandler(odata.createServiceMetadata(context.getEdmProvider(), context
-        .getEdmProvider().getReferences()));
+            .getEdmProvider().getReferences()));
     context.getEdmProvider().setRequestLocales(request.getLocales());
     context.initDebugger(request.getParameter(DebugSupport.ODATA_DEBUG_QUERY_PARAMETER));
     handler.register(context.getDebugSupport());
@@ -77,7 +90,7 @@ public class JPAODataGetHandler {
   }
 
   public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em)
-      throws ODataException {
+          throws ODataException {
 
     process(request, response, null, em);
   }
@@ -94,7 +107,7 @@ public class JPAODataGetHandler {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.apache.olingo.server.api.debug.DebugSupport#createDebugResponse(java.lang.String,
      * org.apache.olingo.server.api.debug.DebugInformation)
      */
@@ -106,7 +119,7 @@ public class JPAODataGetHandler {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
      */
     @Override
@@ -116,7 +129,7 @@ public class JPAODataGetHandler {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
      */
     @Override
